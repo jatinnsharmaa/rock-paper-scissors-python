@@ -4,6 +4,9 @@
 
 import random
 
+CHOICES = ["rock", "paper", "scissors"]
+YES_RESPONSES = ["yes", "y"]
+
 def main():
     print("Welcome to the Game of Rock, Paper, Scissors!")
     play_game()
@@ -12,14 +15,14 @@ def get_player_choice():
     invalid_count = 0
     while True:
         player_choice = input("Enter rock, paper, or scissors: ").lower()
-        if player_choice in ["rock", "paper", "scissors"]:
+        if player_choice in CHOICES:
             return player_choice
         print("Invalid choice. Please try again.")
         
         invalid_count += 1
         if invalid_count > 2:
             continue_playing = input("You've entered invalid input several times. Do you still want to play? (yes/no): ").lower()
-            if continue_playing not in ["yes", "y"]:
+            if continue_playing not in YES_RESPONSES:
                 print("Exiting the game.")
                 exit()
             else:
@@ -38,7 +41,7 @@ def determine_winner(player_choice, computer_choice):
 def play_game():
     while True:
         player_choice = get_player_choice()
-        computer_choice = random.choice(["rock", "paper", "scissors"])
+        computer_choice = random.choice(CHOICES)
         print(f"You chose: {player_choice}")
         print(f"Computer chose: {computer_choice}")
 
@@ -52,7 +55,7 @@ def play_game():
             print("Computer wins!")
 
         play_again = input("Do you want to play again? (yes/no): ").lower()
-        if play_again not in ["yes", "y"]:
+        if play_again not in YES_RESPONSES:
             print("Thanks for playing!")
             break
 
